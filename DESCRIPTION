@@ -3,10 +3,9 @@ Title: Clustering Method Based On Data Dimensionality Reduction Methods
 Version: 0.0.0.9000
 Authors@R: 
     person("Fedor", "Tsvetov", , "Ottokore@mail.ru", role = c("aut", "cre"))
-Description: 
-    Performs clustering of big non-vectorized data 
+Description: Method performs clustering of big non-vectorized data 
     (in particular, nucleotide sequences) using data dimensionality reduction 
-    methods (PCA, PCoA)
+    methods (PCA, PCoA).
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
