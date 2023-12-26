@@ -21,14 +21,8 @@
 #' @export
 #'
 #' @examples
-#' imitation_model(6, 15, 0.4, c("A", "T", "C", "G"), 3)
-#'      [,1]              [,2]              [,3]
-#'[1,] "GAATTGGACCTCACA" "TTTCGGCGTTATGAA" "ACTGTGTCTTTTATT"
-#'[2,] "GCATTCGACCTCCGA" "ATTCGCCGTTATCAT" "ATAGTGTCTTGTGTT"
-#'[3,] "GCATTAGAGCTCAGA" "ATTCGGCGTTACTAC" "ATCGTGTCTTGTATT"
-#'[4,] "GAATTCGAGCTCCAA" "TTTCGACGTTAGTAC" "ACAGTGTCTTGCCTT"
-#'[5,] "GAATTCGAACTCCAA" "GTTCGCCGTTAACAT" "ATGGTGTCTTCGATT"
-#'[6,] "GCATTAGAACTCCGA" "GTTCGTCGTTAACAC" "AGAGTGTCTTTACTT"
+#' # imitation_model(6, 15, 0.4, c("A", "T", "C", "G"), 3)
+#' # imitation_model(100, 200, 0.9, c("A", "T", "C", "G"), 12)
 
 imitation_model <- function(number_of_sequences, sequences_length, percent_of_new_positions, nucleotides, number_of_clusters){
   replicate(number_of_clusters, {

@@ -31,19 +31,13 @@ The function returns a list of nucleotide sequences.
 \description{
 The function creates a list of nucleotide sequences based on the
 first generated sequence with specified parameters. Imitation model
-consists of two parts. \strong{generate_positions()} function returns nucleotide
-positions that will be regenerated, while the \strong{generate_sequences()}
+consists of two parts. \emph{generate_positions()} function returns nucleotide
+positions that will be regenerated, while the \emph{generate_sequences()}
 function performs generation of sequences. As a result, the obtained
 sequences will have some similarity to each other, leading them to be
 clustered together.
 }
 \examples{
-imitation_model(6, 15, 0.4, c("A", "T", "C", "G"), 3)
-     [,1]              [,2]              [,3]
-[1,] "GAATTGGACCTCACA" "TTTCGGCGTTATGAA" "ACTGTGTCTTTTATT"
-[2,] "GCATTCGACCTCCGA" "ATTCGCCGTTATCAT" "ATAGTGTCTTGTGTT"
-[3,] "GCATTAGAGCTCAGA" "ATTCGGCGTTACTAC" "ATCGTGTCTTGTATT"
-[4,] "GAATTCGAGCTCCAA" "TTTCGACGTTAGTAC" "ACAGTGTCTTGCCTT"
-[5,] "GAATTCGAACTCCAA" "GTTCGCCGTTAACAT" "ATGGTGTCTTCGATT"
-[6,] "GCATTAGAACTCCGA" "GTTCGTCGTTAACAC" "AGAGTGTCTTTACTT"
+# imitation_model(6, 15, 0.4, c("A", "T", "C", "G"), 3)
+# imitation_model(100, 200, 0.9, c("A", "T", "C", "G"), 12)
 }
