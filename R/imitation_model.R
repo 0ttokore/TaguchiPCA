@@ -24,7 +24,7 @@
 #' # imitation_model(6, 15, 0.4, c("A", "T", "C", "G"), 3)
 #' # imitation_model(100, 200, 0.9, c("A", "T", "C", "G"), 12)
 
-imitation_model <- function(number_of_sequences, sequences_length, percent_of_new_positions, nucleotides, number_of_clusters){
+imitation_model <- function(number_of_sequences = 100, sequences_length = 100, percent_of_new_positions = 0.4, nucleotides = c("A", "T", "C", "G"), number_of_clusters = 4){
   replicate(number_of_clusters, {
     sequences <- vector("list", number_of_sequences)
     sequence <- replicate(sequences_length, sample(nucleotides, 1, replace = TRUE))
