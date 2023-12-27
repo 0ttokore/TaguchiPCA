@@ -1,3 +1,3 @@
-# TaguchiPCA (development version)
+# TaguchiPCA 0.1.0
 
 * Initial CRAN submission.

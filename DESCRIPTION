@@ -1,6 +1,6 @@
 Package: TaguchiPCA
 Title: Clustering Method Based On Data Dimensionality Reduction Methods
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: 
     person("Fedor", "Tsvetov", , "Ottokore@mail.ru", role = c("aut", "cre"))
 Description: Method performs clustering of big non-vectorized data 
