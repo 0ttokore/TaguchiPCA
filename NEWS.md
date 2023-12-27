@@ -1,3 +1,3 @@
 # TaguchiPCA 0.1.0
 
-* Initial CRAN submission.
+* first public release of the package
