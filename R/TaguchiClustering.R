@@ -1,4 +1,32 @@
-TaguchiClustering <- function(sequences, number_of_clusters = 4, method = 'lv', PC_num = 10, clusters_plot = FALSE, new_clusters_plot = FALSE){
+#' Taguchi Clustering Method
+#'
+#' @description The function takes a list of sequences and a distance metric,
+#'     based on which the given sequences will be vectorized. Then the function
+#'     computes and returns the *PC_num* number of principal coordinates and also
+#'     performs a transition to a new feature space.
+#'
+#' @param sequences List, non-vectorized nucleotide sequences
+#' @param number_of_clusters Integer, number of clusters which you want to divide
+#'     your sequences. The default is 4
+#' @param method Method for distance calculation. The default is "lv", but you can
+#'     also use another method: *'osa'* – optimal alignment, *'dl'* –
+#'     Damerau-Levenshtein, *'qgram'* – q gram, *'cosine'* – cosine, *'jw'* – Jaro,
+#'     *'lcs'* – greatest common substrings
+#' @param PC_num Integer, number of principal coordinates u want to take from the
+#'     function
+#' @param clusters_plot Bool, displays a plot on the first two principal coordinates
+#' @param new_clusters_plot Bool, displays a plot on the first two principal
+#'     coordinates in new feature space
+#'
+#' @return List of *P_num* principal coordinates, *P_num* coordinates in the new
+#'     feature space
+#' @export
+#'
+#' @examples
+#' TaguchiClustering(sequences, number_of_clusters = 8, method = 'osa', clusters_plot = TRUE, new_clusters_plot = TRUE)
+#' TaguchiClustering(imitation_model(), method = 'qgram', new_clusters_plot = TRUE)
+
+TaguchiClustering <- function(sequences, method = 'lv', number_of_clusters = 4, PC_num = 10, clusters_plot = FALSE, new_clusters_plot = FALSE){
   dist_matrix <- stringdist::stringdistmatrix(as.character(sequences), as.character(sequences), method = method)^2
 
   row_means <- rowMeans(dist_matrix)
@@ -47,7 +75,7 @@ TaguchiClustering <- function(sequences, number_of_clusters = 4, method = 'lv', 
 
   if(new_clusters_plot == TRUE){
     pairs(Znew[,1:10],col = groups, main = "Clustered data in extended feature space:")
-    plot(Znew[,1:2], main = "Clustered data in extended feature space", col = groups,lwd = 1, xlab = 'PC1\'', ylab = 'PC2\'')
+    plot(Znew[,1:2], main = "Clustered data in extended feature space", col = groups, lwd = 1, xlab = 'PC1', ylab = 'PC2')
     grid()
   }
 

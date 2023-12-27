@@ -5,11 +5,11 @@
 \title{Imitation Model For Nucleotide Sequences}
 \usage{
 imitation_model(
-  number_of_sequences,
-  sequences_length,
-  percent_of_new_positions,
-  nucleotides,
-  number_of_clusters
+  number_of_sequences = 100,
+  sequences_length = 100,
+  percent_of_new_positions = 0.4,
+  nucleotides = c("A", "T", "C", "G"),
+  number_of_clusters = 4
 )
 }
 \arguments{
