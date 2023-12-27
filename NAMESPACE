@@ -2,4 +2,10 @@
 
 export(TaguchiClustering)
 export(imitation_model)
+importFrom(graphics,grid)
+importFrom(graphics,pairs)
+importFrom(stats,cutree)
+importFrom(stats,dist)
+importFrom(stats,hclust)
+importFrom(stats,rect.hclust)
 importFrom(stringdist,stringdistmatrix)

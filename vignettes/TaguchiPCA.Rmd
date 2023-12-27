@@ -1,0 +1,79 @@
+---
+title: "TaguchiPCA"
+author: "Fedor Tsvetov"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{TaguchiPCA}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+# Description
+```
+TaguchiPCA performs clustering of big non-vectorized data (in particular, nucleotide sequences) using data dimensionality reduction methods (PCA, PCoA). The package also provides the ability to create an imitation model of nucleotide sequences with specified parameters, such as: number of sequences, their length, number of clusters formed from these sequences.
+```
+# Imitation model
+
+## Imitation model description
+```
+The function creates a list of nucleotide sequences based on the first generated sequence with specified parameters. Imitation model consists of two parts.*generate_positions()* function returns nucleotide positions that will be regenerated, while the *generate_sequences()* function performs generation of sequences. As a result, the obtained sequences will have some similarity to each other, leading them to be clustered together.
+```
+## Parameters
+```
+  * number_of_sequences: Integer, number of sequences in each cluster
+  * sequences_length: Integer, the length of each sequence
+  * percent_of_new_positions: Double, percentage of nucleotides that will be regenerated in each sequence
+  * nucleotides: Character, alphabet of symbols from which sequences are formed
+  * number_of_clusters: Integer, number of clusters into which the data will be divided
+```
+## Return values
+```
+The function returns a list of nucleotide sequences.
+```
+## Examples
+```
+Сreates 3 clusters of nucleotide sequences, each with 6 sequences 15 symbols long. In this case, new sequences will be formed from the original one, with the exception of 40% of the symbols that will be accidentally recreated.
+    imitation_model(6, 15, 0.4, c("A", "T", "C", "G"), 3)
+    
+Сreates 12 clusters of nucleotide sequences, each with 100 sequences 200 symbols long. In this case, new sequences will be formed from the original one, with the exception of 90% of the symbols that will be accidentally recreated.
+    imitation_model(100, 200, 0.9, c("A", "T", "C", "G"), 12)
+```
+
+# TaguchiClustering
+
+## TaguchiClustering description
+```
+The function takes a list of sequences and a distance metric, based on which the given sequences will be vectorized. Then the function computes and returns the *PC_num* number of principal coordinates and also     performs a transition to a new feature space.
+```
+## Parameters
+```
+  * sequences List, non-vectorized nucleotide sequences
+  * number_of_clusters Integer, number of clusters which you want to divide your sequences. The default is 4
+  * method Method for distance calculation. The default is "lv", but you can also use another method: *'osa'* – optimal alignment, *'dl'* – Damerau-Levenshtein, *'qgram'* – q gram, *'cosine'* – cosine, *'jw'* – Jaro, *'lcs'* – greatest common substrings
+  * PC_num Integer, number of principal coordinates u want to take from the function
+  * clusters_plot Bool, displays a plot on the first two principal coordinates
+  * new_clusters_plot Bool, displays a plot on the first two principal coordinates in new feature space
+```
+## Return values
+```
+List of *P_num* principal coordinates, *P_num* coordinates in the new feature space
+```
+## Examples
+```
+Vectorizes nucleotide sequences using the 'osa' metric obtained from an imitation model with default values and performs a transition to a new feature space and clusters the data.
+    TaguchiClustering(imitation_model(), method = 'osa')
+    
+Vectorizes nucleotide sequences using the 'qgram' metric obtained from an imitation model with default values, performs a transition to a new feature space, clusters the data and draws plots of the resulting clusters in the new feature space.
+    TaguchiClustering(imitation_model(), method = 'qgram', new_clusters_plot = TRUE)
+```
+
+[link to repository](https://github.com/0ttokore/TaguchiPCA)
+
+

@@ -15,5 +15,8 @@ BugReports: https://github.com/0ttokore/TaguchiPCA/issues
 Imports:
     stringdist
 Suggests: 
+    knitr,
+    rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
+VignetteBuilder: knitr
