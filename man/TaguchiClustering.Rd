@@ -43,6 +43,6 @@ computes and returns the \emph{PC_num} number of principal coordinates and also
 performs a transition to a new feature space.
 }
 \examples{
-TaguchiClustering(sequences, number_of_clusters = 8, method = 'osa', clusters_plot = TRUE, new_clusters_plot = TRUE)
+TaguchiClustering(imitation_model(), number_of_clusters = 8)
 TaguchiClustering(imitation_model(), method = 'qgram', new_clusters_plot = TRUE)
 }

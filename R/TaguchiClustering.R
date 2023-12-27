@@ -21,9 +21,16 @@
 #' @return List of *P_num* principal coordinates, *P_num* coordinates in the new
 #'     feature space
 #' @export
+#' @importFrom graphics grid
+#' @importFrom graphics pairs
+#' @importFrom stats cutree
+#' @importFrom stats dist
+#' @importFrom stats hclust
+#' @importFrom stats rect.hclust
+#' @importFrom stringdist stringdistmatrix
 #'
 #' @examples
-#' TaguchiClustering(sequences, number_of_clusters = 8, method = 'osa', clusters_plot = TRUE, new_clusters_plot = TRUE)
+#' TaguchiClustering(imitation_model(), number_of_clusters = 8)
 #' TaguchiClustering(imitation_model(), method = 'qgram', new_clusters_plot = TRUE)
 
 TaguchiClustering <- function(sequences, method = 'lv', number_of_clusters = 4, PC_num = 10, clusters_plot = FALSE, new_clusters_plot = FALSE){
@@ -49,14 +56,16 @@ TaguchiClustering <- function(sequences, method = 'lv', number_of_clusters = 4, 
     PC[,i] <- sqrt(values[,i]) * vectors[,i]
   }
 
-  if(clusters_plot == TRUE){
+  if(clusters_plot == TRUE || new_clusters_plot == TRUE){
     mDist <- dist(scale(X_centered),method = "euclidian")
     Wardlustering <- hclust(mDist,method = "ward.D2")
+    groups <- cutree(Wardlustering, k = number_of_clusters)
+  }
 
+  if(clusters_plot == TRUE){
     plot(Wardlustering)
     rect.hclust(Wardlustering, k = number_of_clusters)
 
-    groups <- cutree(Wardlustering, k = number_of_clusters)
     plot(PC, main = "PCoA components:", col = groups,lwd = 2, xlab = 'PC1', ylab = 'PC2')
     grid()
   }
@@ -75,6 +84,7 @@ TaguchiClustering <- function(sequences, method = 'lv', number_of_clusters = 4, 
 
   if(new_clusters_plot == TRUE){
     pairs(Znew[,1:10],col = groups, main = "Clustered data in extended feature space:")
+
     plot(Znew[,1:2], main = "Clustered data in extended feature space", col = groups, lwd = 1, xlab = 'PC1', ylab = 'PC2')
     grid()
   }
